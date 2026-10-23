@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="CLAP-AD: Closed-Loop Aware Planning via Imitation-Free Speed Scoring for End-to-End Autonomous Driving.">
+  <meta name="keywords" content="CLAP-AD, autonomous driving, end-to-end planning, speed controllability">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CLAP-AD: Closed-Loop Aware Planning for Autonomous Driving</title>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <style>
+    .publication-title { line-height: 1.2; }
+    .author-list { line-height: 1.8; }
+    .media-panel { background: #fff; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 12px #ddd; }
+    .media-panel img, .media-panel video { display: block; width: 100%; height: auto; border-radius: 4px; }
+    .table-wrap { overflow-x: auto; margin: 1rem 0; }
+    .results-table { min-width: 700px; width: 100%; }
+    .results-table th, .results-table td { text-align: center; vertical-align: middle; white-space: nowrap; }
+    .results-table th:first-child, .results-table td:first-child { text-align: left; }
+    .ours { background: #e8f5e9; }
+    .section-heading { margin-top: 2rem; }
+    @media (max-width: 768px) {
+      .publication-title { font-size: 2rem !important; }
+      .author-list { font-size: 1rem !important; }
+    }
+  </style>
+</head>
+<body>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="has-text-centered">
+        <h1 class="title publication-title" style="font-size: 42px;">
+          Closed-Loop Aware Planning via Imitation-Free Speed Scoring for End-to-End Autonomous Driving
+        </h1>
+        <p class="title is-4" style="margin: 1.5rem 0;">WACV 2027</p>
+
+        <div class="is-size-5 publication-authors author-list">
+          <span class="author-block">
+            <a href="https://scholar.google.com/citations?user=Zdi2340AAAAJ" target="_blank">Emad Aghajanzadeh</a><sup>1,2,*</sup>,</span>
+          <span class="author-block">
+            <a href="https://scholar.google.com/citations?user=Rb5gCN4AAAAJ" target="_blank">Thomas Schwarzfischer</a><sup>1,2,†,*</sup>,</span>
+          <span class="author-block">
+            <a href="https://scholar.google.com/citations?user=qP1IiXIAAAAJ" target="_blank">Marc Kaufeld</a><sup>1</sup>,</span>
+          <span class="author-block">
+            <a href="https://scholar.google.com/citations?user=YQrGEjQAAAAJ" target="_blank">Moritz Thoma</a><sup>2</sup>,</span>
+          <span class="author-block">
+            <a href="https://ryanpegoud.netlify.app/" target="_blank">Ryan Pégoud</a><sup>2,†</sup>,</span>
+          <span class="author-block">
+            <a href="https://scholar.google.com/citations?user=WDNeaMoAAAAJ" target="_blank">Manoj Rohit Vemparala</a><sup>2</sup>,</span>
+          <span class="author-block">
+            <a href="https://scholar.google.com/citations?user=knjS148AAAAJ" target="_blank">Pierpaolo Mori</a><sup>2</sup>,</span>
+          <span class="author-block">
+            <a href="https://scholar.google.com/citations?user=x9wjapMAAAAJ" target="_blank">Nael Fasfous</a><sup>2,†</sup>,</span>
+          <span class="author-block">
+            <a href="https://www.professoren.tum.de/en/betz-johannes" target="_blank">Johannes Betz</a><sup>1</sup>,</span>
+          <span class="author-block">
+            <a href="https://informatics.tuwien.ac.at/people/daniel-mueller-gritschneder" target="_blank">Daniel Mueller-Gritschneder</a><sup>3</sup>,</span>
+          <span class="author-block">
+            <a href="https://www.professoren.tum.de/en/schlichtmann-ulf" target="_blank">Ulf Schlichtmann</a><sup>1</sup></span>
+        </div>
+
+        <div class="is-size-6 publication-authors" style="margin-top: 1rem;">
+          <span class="author-block"><sup>1</sup>Technical University of Munich, Munich, Germany</span><br>
+          <span class="author-block"><sup>2</sup>BMW Group, Munich, Germany</span><br>
+          <span class="author-block"><sup>3</sup>TU Wien, Vienna, Austria</span><br>
+          <span class="author-block"><sup>*</sup>Equal contribution</span>
+          <span class="author-block"><sup>†</sup>Employed at BMW at time of submission</span>
+        </div>
+
+        <div class="publication-links" style="margin-top: 1.25rem;">
+          <span class="link-block">
+            <a href="https://github.com/clap-ad/clap-ad" target="_blank" rel="noopener noreferrer"
+               class="external-link button is-normal is-rounded is-dark">
+              <span class="icon"><i class="fab fa-github"></i></span>
+              <span>Code</span>
+            </a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop content">
+    <div class="media-panel">
+      <img src="./static/videos/clapad_animation.gif" alt="Animation introducing the CLAP-AD planning idea">
+    </div>
+    <p class="has-text-centered" style="margin-top: 1rem;">
+      <strong>CLAP-AD separates path imitation from speed selection.</strong>
+      It predicts a driving path, evaluates candidate speeds against safety criteria,
+      and selects a speed that follows the user's request whenever it is safe.
+    </p>
+  </div>
+</section>
+
+<section class="section light-grey-bg" id="abstract">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 has-text-centered">Abstract</h2>
+    <p class="has-text-justified">
+      End-to-end autonomous driving is commonly trained by imitating a single expert behavior
+      per scenario. This makes it difficult to learn alternative valid behaviors and leaves
+      models vulnerable to noisy or ambiguous speed labels. We introduce
+      <strong>Closed-Loop Aware Planning for Autonomous Driving (CLAP-AD)</strong>, a plug-in
+      planning head that separates path prediction from speed selection: it learns the path
+      through imitation, then scores candidate speeds using multiple safety criteria grounded
+      in physical constraints. At test time, a user can specify a desired speed, which the
+      planner follows when feasible while falling back to safe alternatives as needed—without
+      retraining. On Bench2Drive-Speed, CLAP-AD achieves a Speed-Adherence score of 82.53,
+      exceeding the strongest baseline by 12.9 points. On Bench2Drive it improves the driving
+      scores of UniAD and VAD by 28.5 and 32.7 points, respectively, while retaining strong
+      performance with TFv6. On NAVSIM v2, it improves its LTFv6 backbone's EPDMS by 6.1.
+    </p>
+  </div>
+</section>
+
+<section class="section" id="method">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 has-text-centered">How the Planner Works</h2>
+    <p class="has-text-justified">
+      CLAP-AD first predicts a feasible path from the scene representation provided by an
+      existing end-to-end driving model. Dedicated scoring heads then evaluate candidate
+      speeds along that path for collision risk, traffic-light compliance, and stop-sign
+      compliance. At deployment, speed classes that pass the safety threshold are feasible;
+      a selector can choose the feasible speed closest to a requested target, or use another
+      policy such as the median for cautious driving. This planning head integrates with
+      different backbones, including UniAD, VAD, and TFv6.
+    </p>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="media-panel">
+          <video controls autoplay muted loop playsinline preload="metadata" aria-label="CLAP-AD planner operation">
+            <source src="./static/videos/clapad_method.mp4" type="video/mp4">
+            Your browser does not support HTML video.
+          </video>
+        </div>
+        <p class="has-text-centered" style="margin-top: 0.75rem;">
+          The path planner and criterion-specific speed-scoring heads work together to choose
+          a safe, controllable speed.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section light-grey-bg" id="driving-examples">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 has-text-centered">Driving Examples</h2>
+    <p class="has-text-centered">
+      Closed-loop showcase of the planner adapting its speed to traffic and safety constraints. CLAP-AD planner using a VAD backbone on CARLA routes.
+    </p>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="media-panel">
+          <video controls autoplay muted loop playsinline preload="metadata" aria-label="CLAP-AD driving examples">
+            <source src="./static/videos/clapad_driving.mp4" type="video/mp4">
+            Your browser does not support HTML video.
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="results-speed">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 has-text-centered">Results</h2>
+    <h3 class="title is-4 section-heading">Bench2Drive-Speed</h3>
+    <p>
+      Results on 48 routes. Speed-Adherence (SA) measures how closely the vehicle follows
+      the requested speed. CLAP-AD improves adherence on all three backbones.
+    </p>
+    <div class="table-wrap">
+      <table class="table is-striped is-narrow results-table">
+        <thead>
+          <tr>
+            <th>Method</th><th>SA (All) ↑</th><th>Easy ↑</th><th>Medium ↑</th>
+            <th>Hard ↑</th><th>Efficiency ↑</th><th>Driving Score ↑</th><th>Success Rate ↑</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>TCP-Speed</td><td>69.23</td><td>76.18</td><td>68.71</td><td>62.81</td><td>169.84</td><td>29.66</td><td>18.75</td></tr>
+          <tr><td>SparseDriveV2</td><td>51.13</td><td>52.50</td><td>49.72</td><td>51.18</td><td>91.77</td><td><strong>94.63</strong></td><td>60.41</td></tr>
+          <tr><td>UniAD</td><td>54.22</td><td>56.14</td><td>52.62</td><td>53.90</td><td>108.49</td><td>18.90</td><td>4.16</td></tr>
+          <tr class="ours"><td><strong>UniAD + CLAP-AD</strong></td><td>79.41 (+25.2)</td><td>83.83</td><td>75.40</td><td>79.00</td><td>170.03</td><td>75.15</td><td>41.67</td></tr>
+          <tr><td>VAD</td><td>61.63</td><td>64.64</td><td>62.60</td><td>57.66</td><td>130.53</td><td>40.23</td><td>20.83</td></tr>
+          <tr class="ours"><td><strong>VAD + CLAP-AD</strong></td><td>75.51 (+13.9)</td><td>80.42</td><td>72.05</td><td>74.07</td><td>159.48</td><td>90.52</td><td>52.08</td></tr>
+          <tr><td>TFv6</td><td>69.64</td><td>70.75</td><td>68.30</td><td>69.86</td><td>154.58</td><td>92.59</td><td>58.33</td></tr>
+          <tr class="ours"><td><strong>TFv6 + CLAP-AD</strong></td><td><strong>82.53 (+12.9)</strong></td><td><strong>89.79</strong></td><td><strong>76.81</strong></td><td><strong>80.98</strong></td><td><strong>187.80</strong></td><td>88.47</td><td>50.00</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="is-size-7">
+      SA is reported for all routes and the Easy, Medium, and Hard splits. CLAP-AD's TFv6
+      variant attains the best overall Speed-Adherence, trading 4.1 Driving Score points
+      against the TFv6 baseline.
+    </p>
+  </div>
+</section>
+
+<section class="section light-grey-bg" id="results-bench2drive">
+  <div class="container is-max-desktop content">
+    <h3 class="title is-4">Bench2Drive Closed-Loop Performance</h3>
+    <p>
+      Results on the 220 Bench2Drive routes. Each CLAP-AD variant replaces the planning head
+      of its corresponding backbone; the driving-score difference is relative to that backbone.
+    </p>
+    <div class="table-wrap">
+      <table class="table is-striped is-narrow results-table">
+        <thead>
+          <tr><th>Method</th><th>Test-time speed control</th><th>Driving Score ↑</th><th>Δ Score</th><th>Success Rate (%) ↑</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>UniAD</td><td>No</td><td>45.81</td><td>—</td><td>16.36</td></tr>
+          <tr class="ours"><td><strong>UniAD + CLAP-AD</strong></td><td>Yes</td><td><strong>74.29</strong></td><td><strong>+28.5</strong></td><td><strong>49.09</strong></td></tr>
+          <tr><td>VAD</td><td>No</td><td>42.35</td><td>—</td><td>15.00</td></tr>
+          <tr class="ours"><td><strong>VAD + CLAP-AD</strong></td><td>Yes</td><td><strong>75.04</strong></td><td><strong>+32.7</strong></td><td><strong>47.27</strong></td></tr>
+          <tr><td>TFv6</td><td>No</td><td><strong>94.70</strong></td><td>—</td><td><strong>82.10</strong></td></tr>
+          <tr class="ours"><td><strong>TFv6 + CLAP-AD</strong></td><td>Yes</td><td>92.30</td><td>−2.4</td><td>75.00</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="results-navsim">
+  <div class="container is-max-desktop content">
+    <h3 class="title is-4">NAVSIM v2</h3>
+    <p>
+      On NAVSIM v2 navhard, CLAP-AD replaces the planning head of LTFv6. EPDMS is the
+      aggregate evaluation score; NC and TTC are shown for the reactive Stage 2 evaluation.
+    </p>
+    <div class="table-wrap">
+      <table class="table is-striped is-narrow results-table">
+        <thead>
+          <tr><th>Method</th><th>NC Stage 2 ↑</th><th>TTC Stage 2 ↑</th><th>EPDMS ↑</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>LTFv6</td><td>79.9</td><td>76.1</td><td>31.9</td></tr>
+          <tr class="ours"><td><strong>LTFv6 + CLAP-AD</strong></td><td><strong>90.3</strong></td><td><strong>87.7</strong></td><td><strong>38.0 (+6.1)</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer class="footer light-grey-bg">
+  <div class="container content has-text-centered">
+    <p>
+      <strong>CLAP-AD</strong> — Closed-Loop Aware Planning via Imitation-Free Speed Scoring
+      for End-to-End Autonomous Driving.
+    </p>
+    <p>WACV 2027</p>
+    <a href="https://github.com/clap-ad" target="_blank" rel="noopener noreferrer">
+      <span class="icon"><i class="fab fa-github"></i></span> Project
+    </a>
+  </div>
+</footer>
+</body>
+</html>
