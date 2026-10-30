@@ -7,6 +7,7 @@
   <meta name="keywords" content="CLAP-AD, autonomous driving, end-to-end planning, speed controllability">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CLAP-AD: Closed-Loop Aware Planning for Autonomous Driving</title>
+  <link rel="icon" type="image/png" href="./static/images/clap-logo-rounded.png">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
 
@@ -26,9 +27,17 @@
     .results-table th:first-child, .results-table td:first-child { text-align: left; }
     .ours { background: #e8f5e9; }
     .section-heading { margin-top: 2rem; }
+    .brand-logo { display: block; width: 112px; height: 112px; margin: 0 auto 1.25rem; }
+    .publication-links .button-link-arxiv { background-color: #b31b1b; border-color: #b31b1b; color: #fff; }
+    .publication-links .button-link-github { background-color: #24292f; border-color: #24292f; color: #fff; }
+    .publication-links .button-link-huggingface { background-color: #ffd21e; border-color: #ffd21e; color: #24292f; }
+    .publication-links .button-link-arxiv:hover { background-color: #941616; border-color: #941616; color: #fff; }
+    .publication-links .button-link-github:hover { background-color: #3b424a; border-color: #3b424a; color: #fff; }
+    .publication-links .button-link-huggingface:hover { background-color: #e8bd08; border-color: #e8bd08; color: #24292f; }
     @media (max-width: 768px) {
       .publication-title { font-size: 2rem !important; }
       .author-list { font-size: 1rem !important; }
+      .brand-logo { width: 88px; height: 88px; }
     }
   </style>
 </head>
@@ -37,6 +46,7 @@
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="has-text-centered">
+        <img class="brand-logo" src="./static/images/clap-logo-rounded.png" alt="CLAP-AD logo">
         <h1 class="title publication-title" style="font-size: 42px;">
           Closed-Loop Aware Planning via Imitation-Free Speed Scoring for End-to-End Autonomous Driving
         </h1>
@@ -77,10 +87,24 @@
 
         <div class="publication-links" style="margin-top: 1.25rem;">
           <span class="link-block">
+            <a href="https://arxiv.org/pdf/2610.36079" target="_blank" rel="noopener noreferrer"
+               class="external-link button is-normal is-rounded button-link-arxiv">
+              <span class="icon"><i class="ai ai-arxiv"></i></span>
+              <span>Paper</span>
+            </a>
+          </span>
+          <span class="link-block">
             <a href="https://github.com/clap-ad/clap-ad" target="_blank" rel="noopener noreferrer"
-               class="external-link button is-normal is-rounded is-dark">
+               class="external-link button is-normal is-rounded button-link-github">
               <span class="icon"><i class="fab fa-github"></i></span>
               <span>Code</span>
+            </a>
+          </span>
+          <span class="link-block">
+            <a href="https://huggingface.co/clap-ad" target="_blank" rel="noopener noreferrer"
+               class="external-link button is-normal is-rounded button-link-huggingface">
+              <span class="icon" aria-hidden="true">🤗</span>
+              <span>Checkpoints</span>
             </a>
           </span>
         </div>
